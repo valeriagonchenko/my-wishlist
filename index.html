@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="Мой вишлист — идеи подарков для друзей и близких." />
+  <title>My Wishlist — желания</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;color:#101010;background:#fff;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}
+    .shell{max-width:1152px;margin:0 auto;padding:0 30px}.top{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ebebeb}
+    .brand{font-size:18px;font-weight:650;letter-spacing:-.7px;text-decoration:none}.topnote{color:#777;font-size:13px}
+    .hero{padding:94px 0 64px;max-width:750px}.eyebrow{font-size:12px;letter-spacing:.19em;font-weight:700;color:#858585;text-transform:uppercase;margin:0 0 18px}
+    h1{font-size:clamp(48px,8vw,94px);line-height:1.01;letter-spacing:-.075em;font-weight:700;margin:0 0 24px}.intro{max-width:545px;color:#737373;font-size:18px;line-height:1.6;margin:0}
+    .sectionhead{border-top:1px solid #e9e9e9;padding:30px 0 23px;display:flex;align-items:center;justify-content:space-between;gap:15px}.sectionhead h2{font-size:22px;letter-spacing:-.05em;margin:0}.count{font-size:13px;color:#8a8a8a}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 29px}.filter{border:1px solid #e5e5e5;background:#fff;border-radius:22px;padding:10px 17px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}.filter:hover{border-color:#bbb}.filter.active{background:#111;color:#fff;border-color:#111}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 23px}.gift{min-width:0}.media{position:relative;aspect-ratio:1/1.05;border-radius:16px;background:#f6f6f6;overflow:hidden;display:flex;align-items:center;justify-content:center}.media img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;padding:17px;transition:transform .35s}.gift:hover .media img{transform:scale(1.035)}.fallback{font-size:52px;opacity:.35}
+    .tag{position:absolute;left:15px;top:15px;background:#fff;border:1px solid #e8e8e8;border-radius:30px;padding:8px 11px;font-size:11px;font-weight:650;z-index:1}.tag.taken{background:#eee;color:#777}.detail{padding:19px 2px 0}.category{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#939393;font-weight:700;margin:0 0 9px}.name{font-size:20px;line-height:1.2;letter-spacing:-.045em;margin:0 0 8px;font-weight:650}.price{font-size:15px;font-weight:600;margin:0 0 11px}.description{font-size:13px;line-height:1.55;color:#777;min-height:20px;margin:0 0 18px}.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.btn{border:1px solid #111;background:#111;color:white;border-radius:9px;font-size:13px;font-weight:650;padding:12px 17px;cursor:pointer;transition:.2s;min-height:42px}.btn:hover:not(:disabled){background:#333}.btn:disabled{cursor:default;background:#ededed;color:#888;border-color:#ededed}.store{border:1px solid #dedede;background:#fff;color:#222;border-radius:9px;text-decoration:none;padding:12px 15px;font-size:13px;font-weight:600;min-height:42px}.store:hover{background:#f6f6f6}
+    .notice{border-radius:12px;background:#f7f7f7;padding:21px 24px;font-size:14px;line-height:1.6;color:#686868}.notice strong{color:#222}.empty{padding:34px 0 70px;color:#777}.footer{border-top:1px solid #e9e9e9;margin-top:95px;padding:28px 0 42px;display:flex;justify-content:space-between;gap:20px;font-size:12px;color:#999}
+    .toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);padding:14px 21px;background:#1d1d1f;color:#fff;border-radius:12px;font-size:13px;max-width:min(480px,calc(100vw - 32px));box-shadow:0 15px 50px #0003;opacity:0;pointer-events:none;transition:.25s;z-index:5;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:70px 0 54px}}@media(max-width:540px){.shell{padding:0 19px}.top{height:68px}.topnote{font-size:11px}.hero{padding:70px 0 49px}.intro{font-size:16px}.grid{grid-template-columns:1fr;gap:40px}.media{aspect-ratio:1.1/1}.sectionhead h2{font-size:20px}.footer{margin-top:70px}.name{font-size:21px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top"><a class="brand" href="./">wishlist<span style="color:#aaa">.</span></a><span class="topnote">A little collection of wishes</span></header>
+    <section class="hero"><p class="eyebrow">My personal wishlist</p><h1>Маленькие<br>желания.</h1><p class="intro">Здесь собраны вещи, которым я буду рада. Если решишь что-то подарить — просто забронируй, чтобы подарки не повторились. Спасибо, что заглянул(а) ♡</p></section>
+    <main><div class="sectionhead"><h2>Список желаний</h2><span id="count" class="count">Загружаем...</span></div><div id="filters" class="filters" aria-label="Категории"></div><div id="gifts" class="grid" aria-live="polite"></div><p id="empty" class="empty" hidden></p></main>
+    <footer class="footer"><span>Made with love ♡</span><span>Никакой регистрации. Только подарки.</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    'use strict';
+    const API = 'https://script.google.com/macros/s/AKfycbzzskP-5wCc21_vDecFzcG6xtuPD6TdHir47yub0XQfmggHBr26-hqZjWJMbCZXasxD/exec';
+    const els = {gifts:document.getElementById('gifts'),filters:document.getElementById('filters'),count:document.getElementById('count'),empty:document.getElementById('empty'),toast:document.getElementById('toast')};
+    let gifts=[],category='Все',busyIds=new Set(),toastTimer;
+    function notify(message){els.toast.textContent=message;els.toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>els.toast.classList.remove('show'),4700)}
+    function jsonp(params={}){
+      return new Promise((resolve,reject)=>{
+        const cb='wishlistCallback_'+Math.random().toString(36).slice(2);
+        const script=document.createElement('script');
+        let done=false;
+        const timer=setTimeout(()=>finish(new Error('Сервер долго не отвечает')),12000);
+        function finish(error,value){if(done)return;done=true;clearTimeout(timer);delete window[cb];script.remove();error?reject(error):resolve(value)}
+        window[cb]=data=>finish(null,data);
+        script.onerror=()=>finish(new Error('Не удалось загрузить список'));
+        const url=new URL(API);Object.entries({...params,callback:cb}).forEach(([k,v])=>url.searchParams.set(k,v));url.searchParams.set('_',Date.now());script.src=url.toString();document.head.appendChild(script);
+      });
+    }
+    async function load(){
+      try{const result=await jsonp();if(!result.ok||!Array.isArray(result.gifts))throw Error('Неверный ответ сервера');gifts=result.gifts;render()}
+      catch(err){els.count.textContent='Не удалось загрузить';els.empty.hidden=false;els.empty.textContent='Не удалось загрузить подарки. Обнови страницу и попробуй снова.';notify(err.message)}
+    }
+    function safeUrl(raw){try{const url=new URL(raw);return ['https:','http:'].includes(url.protocol)?url.href:null}catch{return null}}
+    function e(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!=null)el.textContent=text;return el}
+    function renderFilters(){els.filters.replaceChildren();const cats=['Все',...new Set(gifts.map(g=>g.category).filter(Boolean))];for(const cat of cats){const b=e('button','filter'+(cat===category?' active':''),cat);b.type='button';b.onclick=()=>{category=cat;render()};els.filters.append(b)}}
+    function render(){
+      renderFilters();els.gifts.replaceChildren();const shown=gifts.filter(g=>category==='Все'||g.category===category);els.count.textContent=`${gifts.length} ${giftWord(gifts.length)}`;els.empty.hidden=shown.length>0;els.empty.textContent=gifts.length?'В этой категории пока нет подарков.':'Пока подарков нет. Загляни позже.';
+      shown.forEach(g=>{
+        const card=e('article','gift');const media=e('div','media');const tag=e('span','tag'+(g.reserved?' taken':''),g.reserved?'Уже выбрали':'Свободно');media.append(tag);
+        const imageUrl=safeUrl(g.image);if(imageUrl){const img=document.createElement('img');img.src=imageUrl;img.alt=g.name||'Подарок';img.loading='lazy';img.onerror=()=>{img.remove();media.append(e('span','fallback','♡'))};media.append(img)}else media.append(e('span','fallback','♡'));
+        const detail=e('div','detail');detail.append(e('p','category',g.category||'Желание'),e('h3','name',g.name||'Без названия'));
+        if(g.price)detail.append(e('p','price',g.price));if(g.description)detail.append(e('p','description',g.description));
+        const actions=e('div','actions');const book=e('button','btn',busyIds.has(String(g.id))?'Бронируем...':g.reserved?'Забронировано':'Забронировать');book.type='button';book.disabled=g.reserved||busyIds.has(String(g.id));book.onclick=()=>reserve(g);actions.append(book);
+        const store=safeUrl(g.link);if(store){const a=e('a','store','В магазин ↗');a.href=store;a.target='_blank';a.rel='noopener noreferrer';actions.append(a)}
+        detail.append(actions);card.append(media,detail);els.gifts.append(card);
+      });
+    }
+    function giftWord(n){const v=n%100;return v>=11&&v<=14?'желаний':n%10===1?'желание':[2,3,4].includes(n%10)?'желания':'желаний'}
+    // Apps Script не выставляет CORS-заголовки для POST из GitHub Pages.
+    // Отправляем стандартную HTML-форму в скрытый iframe и проверяем результат через JSONP.
+    function submitReservation(id,token){
+      return new Promise((resolve,reject)=>{
+        const frame=document.createElement('iframe');frame.name='gift_frame_'+crypto.randomUUID();frame.hidden=true;frame.title='Отправка бронирования';document.body.append(frame);
+        const form=document.createElement('form');form.method='POST';form.action=API;form.target=frame.name;form.hidden=true;
+        for(const [name,value] of Object.entries({id,token})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=value;form.append(input)}document.body.append(form);
+        let submitted=false;const timeout=setTimeout(()=>finish(new Error('Не удалось подтвердить отправку')),12000);
+        function finish(err){clearTimeout(timeout);setTimeout(()=>{form.remove();frame.remove()},200);err?reject(err):resolve()}
+        frame.onload=()=>{if(submitted)finish()};
+        submitted=true;form.submit();
+      });
+    }
+    const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+    async function reserve(g){
+      if(g.reserved||busyIds.has(String(g.id)))return;
+      if(!confirm(`Забронировать «${g.name}»? После этого другие гости увидят, что подарок уже выбран.`))return;
+      const id=String(g.id),token=crypto.randomUUID();busyIds.add(id);render();
+      try{
+        await submitReservation(id,token);
+        let confirmed=false;
+        for(let attempt=0;attempt<5;attempt++){
+          await wait(attempt===0?450:800);
+          const check=await jsonp({id,token});
+          if(check.mine){confirmed=true;break}
+          if(check.gifts?.some(item=>String(item.id)===id&&item.reserved))break;
+        }
+        if(confirmed){try{localStorage.setItem('gift_booking_'+id,token)}catch{};notify('Подарок забронирован! Спасибо ♡')}
+        else notify('Бронирование не подтверждено. Возможно, подарок выбрали раньше тебя.');
+        const list=await jsonp();gifts=list.gifts||gifts;
+      }catch(err){notify('Не удалось проверить бронирование. Обнови страницу перед повторной попыткой.');try{const list=await jsonp();gifts=list.gifts||gifts}catch{}}
+      finally{busyIds.delete(id);render()}
+    }
+    load();
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busyIds.size)load()});
+  </script>
+</body>
+</html>
